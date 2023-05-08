@@ -2,31 +2,24 @@ package ro.sci.ticketservice.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 import ro.sci.ticketservice.model.TicketStatus;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class TicketRequest {
+public class TicketResponse {
 
     private Long id;
 
-    @NonNull
-    private Long workerId;
+    private WorkerResponse worker;
 
-    @NonNull
-    private Long categoryId;
+    private CategoryResponse category;
 
-    @NonNull
     private String description;
 
-    @NonNull
     private LocalDateTime createdAt;
 
-    @NonNull
     private TicketStatus status;
-
 
 }

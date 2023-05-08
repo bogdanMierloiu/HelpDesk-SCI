@@ -1,12 +1,9 @@
 package ro.sci.ticketservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,9 +22,11 @@ public class Department {
     private String name;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("department")
     private List<Worker> workers;
 
     @ManyToOne
+    @JsonIgnoreProperties("department")
     private PoliceStructure policeStructure;
 
 
