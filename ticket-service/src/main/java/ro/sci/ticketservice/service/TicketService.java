@@ -69,6 +69,13 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
+    @Transactional
+    public void closeTicket(Long ticketId) {
+        Ticket ticket = getTicketById(ticketId);
+        updateTicketStatus(ticket, TicketStatus.RESOLVED);
+        ticketRepository.save(ticket);
+    }
+
 
     // Private methods
     private void validateInput(Long ticketId, List<Long> itSpecialistId) {

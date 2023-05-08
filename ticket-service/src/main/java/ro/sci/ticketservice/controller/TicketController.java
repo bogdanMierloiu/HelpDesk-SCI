@@ -1,5 +1,6 @@
 package ro.sci.ticketservice.controller;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,16 @@ public class TicketController {
         }
         ticketService.assignTicket(request);
         return ResponseEntity.ok("Ticket assigned successfully");
+    }
+
+    @PostMapping("/close/{ticketId}")
+    public ResponseEntity<String> closeTicket(@PathVariable("ticketId") @NotNull(message = "Ticket ID cannot be null") Long ticketId) {
+        try {
+            ticketService.closeTicket(ticketId);
+            return ResponseEntity.ok("Ticket with Id:" + ticketId + " has been successfully closed.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid ticket ID: " + e.getMessage());
+        }
     }
 
 

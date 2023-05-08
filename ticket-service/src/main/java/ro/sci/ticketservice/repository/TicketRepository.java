@@ -17,6 +17,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     @Query("SELECT t FROM Ticket t where t.status = 'IN_PROGRESS' order by t.createdAt desc")
     List<Ticket> findAllByStatusInProgress();
 
-    @Query("SELECT t FROM Ticket t where t.status = 'CLOSED' order by t.createdAt desc")
+    @Query("SELECT t FROM Ticket t where t.status = 'RESOLVED' order by t.createdAt desc")
     List<Ticket> findAllByStatusIsClosed();
 }
