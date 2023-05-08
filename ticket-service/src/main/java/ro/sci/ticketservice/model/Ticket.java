@@ -32,10 +32,12 @@ public class Ticket {
 
     private LocalDateTime createdAt;
 
+    @Column(columnDefinition = "VARCHAR(16)")
+    @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
     @ManyToMany
-    @JoinTable( name = "itspecialist_tickets",
+    @JoinTable(name = "itspecialist_tickets",
             joinColumns = @JoinColumn(name = "ticket_id"),
             inverseJoinColumns = @JoinColumn(name = "itspecialist_id")
     )
