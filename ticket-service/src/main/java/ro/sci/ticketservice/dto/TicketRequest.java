@@ -22,10 +22,9 @@ public class TicketRequest {
     @NonNull
     private String description;
 
-    @NonNull
     private LocalDateTime createdAt;
 
-    @NonNull
+
     private TicketStatus status;
 
 
