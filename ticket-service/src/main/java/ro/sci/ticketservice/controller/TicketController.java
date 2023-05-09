@@ -38,6 +38,11 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.getAllTickets());
     }
 
+    @GetMapping("/all-tickets-not-resolved")
+    public ResponseEntity<List<TicketResponse>> getAllNotResolved() {
+        return ResponseEntity.ok(ticketService.getAllTicketsIsNotClosed());
+    }
+
     @GetMapping("/all-open-tickets")
     public ResponseEntity<List<TicketResponse>> getAllOpen() {
         return ResponseEntity.ok(ticketService.getAllTicketsOpen());
@@ -51,6 +56,15 @@ public class TicketController {
     @GetMapping("/all-closed-tickets")
     public ResponseEntity<List<TicketResponse>> getAllClosed() {
         return ResponseEntity.ok(ticketService.getAllTicketsClosed());
+    }
+
+    @GetMapping("/it-specialist/{itSpecialistId}")
+    public ResponseEntity<?> getAllBySpecialistId(@PathVariable("itSpecialistId") @NotNull(message = "ItSpecialist ID cannot be null") Long itSpecialistId) {
+        try {
+            return ResponseEntity.ok(ticketService.getAllByItSpecialist(itSpecialistId));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid itSpecialist ID: " + e.getMessage());
+        }
     }
 
     @PostMapping("/assign")

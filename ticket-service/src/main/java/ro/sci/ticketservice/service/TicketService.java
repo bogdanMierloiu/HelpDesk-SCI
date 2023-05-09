@@ -63,6 +63,17 @@ public class TicketService {
         return ticketMapper.map(ticketRepository.findAllByStatusIsClosed());
     }
 
+    public List<TicketResponse> getAllTicketsIsNotClosed() {
+        return ticketMapper.map(ticketRepository.findAllByStatusIsNotClosed());
+    }
+
+    public List<TicketResponse> getAllByItSpecialist(Long itSpecialistId) {
+        if (itSpecialistId == null) {
+            throw new IllegalArgumentException("Specialist ID cannot be null");
+        }
+        return ticketMapper.map(ticketRepository.findAllByItSpecialistId(itSpecialistId));
+    }
+
     @Transactional
     public void assignTicket(AssignTicketRequest request) {
         validateInput(request.getTicketId(), request.getItSpecialistsId());
@@ -98,7 +109,11 @@ public class TicketService {
     }
 
     private List<ITSpecialist> getItSpecialistById(List<Long> itSpecialistsId) {
-        return itSpecialistRepository.findAllById(itSpecialistsId);
+        List<ITSpecialist> specialists = itSpecialistRepository.findAllById(itSpecialistsId);
+        if (specialists.isEmpty()) {
+            throw new NotFoundException("Some of it specialists not founded");
+        }
+        return specialists;
     }
 
     private void updateTicketStatus(Ticket ticket, TicketStatus status) {

@@ -17,18 +17,8 @@
 <div class="content-wrap">
     <div style="padding-top: 20px">
         <form th:action="@{/ticket/add-ticket-form}">
-            <button type="submit"
-                    class="btn btn-outline-success d-flex align-items-center justify-content-center">
+            <button type="submit" class="btn btn-outline-success d-flex align-items-center justify-content-center">
                 Add ticket
-            </button>
-        </form>
-    </div>
-    <div>
-        <form th:action="@{/ticket/view-tickets-for-it-specialist}" method="get">
-            <input type="hidden" name="id" th:value="2"/>
-            <button type="submit"
-                    class="btn btn-outline-success d-flex align-items-center justify-content-center">
-                View your tickets assigned
             </button>
         </form>
     </div>

@@ -21,6 +21,9 @@ public class ITSpecialist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
     @ManyToMany(mappedBy = "itSpecialists", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("itSpecialists")
     private List<Ticket> tickets;

@@ -13,9 +13,17 @@ public class TicketService {
 
     private final WebClient.Builder webClientBuilder;
 
-    public TicketResponse[] getAllTickets() {
+    public TicketResponse[] getAllTicketsNotResolved() {
         return webClientBuilder.build().get()
-                .uri("http://localhost:8081/ticket/all-tickets")
+                .uri("http://localhost:8081/ticket/all-tickets-not-resolved")
+                .retrieve()
+                .bodyToMono(TicketResponse[].class)
+                .block();
+    }
+
+    public TicketResponse[] getTicketsByItSpecialistId(Long itSpecialistId) {
+        return webClientBuilder.build().get()
+                .uri("http://localhost:8081/ticket/it-specialist/{workerId}", itSpecialistId)
                 .retrieve()
                 .bodyToMono(TicketResponse[].class)
                 .block();

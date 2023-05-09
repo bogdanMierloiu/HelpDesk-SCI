@@ -20,19 +20,19 @@ public class TicketWebController {
 
     @GetMapping("/")
     public String indexPage(Model model) {
-        model.addAttribute("tickets", ticketService.getAllTickets());
+        model.addAttribute("tickets", ticketService.getAllTicketsNotResolved());
         return "index";
     }
 
     @GetMapping("/add-ticket-form")
-    public String ticketForm(Model model){
+    public String ticketForm(Model model) {
         return "add-ticket";
     }
 
     @PostMapping("/add")
-    public String addTicket(@ModelAttribute TicketRequest request, Model model){
+    public String addTicket(@ModelAttribute TicketRequest request, Model model) {
         ticketService.addTicket(request);
-        model.addAttribute("tickets", ticketService.getAllTickets());
+        model.addAttribute("tickets", ticketService.getAllTicketsNotResolved());
         return "index";
     }
 
@@ -43,6 +43,12 @@ public class TicketWebController {
         return "ticket";
     }
 
+    @GetMapping("/view-tickets-for-it-specialist")
+    public String viewTicketsForItSpecialist(@RequestParam("id") Long itSpecialistId, Model model) {
+        model.addAttribute("tickets", ticketService.getTicketsByItSpecialistId(itSpecialistId));
+        return "tickets-for-itSpecialist";
+    }
+
     @PostMapping("/assign-ticket")
     public String assignTicket(@RequestParam("id") Long ticketId, Model model) {
         AssignTicketRequest request = AssignTicketRequest.builder()
@@ -50,7 +56,7 @@ public class TicketWebController {
                 .itSpecialistsId(List.of(1L))
                 .build();
         ticketService.assignTicket(request);
-        model.addAttribute("tickets", ticketService.getAllTickets());
+        model.addAttribute("tickets", ticketService.getAllTicketsNotResolved());
         return "index";
     }
 
