@@ -13,40 +13,24 @@
 </head>
 <body>
 
-
 <div class="content-wrap">
-    <div style="padding-top: 20px">
-        <form th:action="@{/ticket/add-ticket-form}">
-            <button type="submit" class="btn btn-outline-success d-flex align-items-center justify-content-center">
-                Add ticket
-            </button>
-        </form>
-    </div>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <div class="card-deck">
-                    <div class="card" style="min-width: 18rem;" th:each="ticket : ${tickets}">
-                        <div class="card-body">
-                            <h5 class="card-title"
-                                th:text="${#strings.length(ticket.getDescription()) &lt;= 50 ? ticket.getDescription() : #strings.substring(ticket.getDescription(), 0, 50) + '...'}"></h5>
-                            <hr>
-                            <p class="card-text text-muted"
-                               th:text="${'Created by: ' + ticket.getWorker().getName()}"></p>
-                            <p class="card-text text-muted"
-                               th:text="${'Category: ' + ticket.getCategory().getName()}"></p>
-                            <p class="card-text text-muted"
-                               th:text="${'Created at: ' + ticket.getCreatedAt()}"></p>
-                            <p class="card-text" th:text="${'Status: ' + ticket.getStatus()}"></p>
-
-                            <form th:action="@{/ticket/view-ticket}" method="post">
-                                <input type="hidden" name="id" th:value="${ticket.getId()}"/>
-                                <button type="submit"
-                                        class="btn btn-outline-success btn-block d-flex align-items-center justify-content-center">
-                                    View ticket
-                                </button>
-                            </form>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <hr>
+                        <form class="add-form" th:action="@{/ticket/add}" method="post">
+                            <div class="form-group">
+                                <label for="description">Ticket</label>
+                                <textarea id="description" name="description" rows="5" cols="50" required
+                                          class="form-control"></textarea>
+                                <small class="form-text text-muted">Describe your problem:</small>
+                            </div>
+                            <input type="hidden" name="workerId" th:value="1">
+                            <input type="hidden" name="categoryId" th:value="1">
+                            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Create</button>
+                        </form>
                     </div>
                 </div>
             </div>

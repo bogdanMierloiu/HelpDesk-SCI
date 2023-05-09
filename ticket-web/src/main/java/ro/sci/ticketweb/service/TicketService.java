@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import ro.sci.ticketweb.dto.AssignTicketRequest;
+import ro.sci.ticketweb.dto.TicketRequest;
 import ro.sci.ticketweb.dto.TicketResponse;
 
 @Service
@@ -25,6 +26,15 @@ public class TicketService {
                 .uri("http://localhost:8081/ticket/{ticketId}", ticketId)
                 .retrieve()
                 .bodyToMono(TicketResponse.class)
+                .block();
+    }
+
+    public void addTicket(TicketRequest request) {
+        webClientBuilder.build().post()
+                .uri("http://localhost:8081/ticket")
+                .bodyValue(request)
+                .retrieve()
+                .toBodilessEntity()
                 .block();
     }
 

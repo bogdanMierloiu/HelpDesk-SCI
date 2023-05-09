@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.sci.ticketweb.dto.AssignTicketRequest;
+import ro.sci.ticketweb.dto.TicketRequest;
 import ro.sci.ticketweb.dto.TicketResponse;
 import ro.sci.ticketweb.service.TicketService;
 
@@ -19,6 +20,18 @@ public class TicketWebController {
 
     @GetMapping("/")
     public String indexPage(Model model) {
+        model.addAttribute("tickets", ticketService.getAllTickets());
+        return "index";
+    }
+
+    @GetMapping("/add-ticket-form")
+    public String ticketForm(Model model){
+        return "add-ticket";
+    }
+
+    @PostMapping("/add")
+    public String addTicket(@ModelAttribute TicketRequest request, Model model){
+        ticketService.addTicket(request);
         model.addAttribute("tickets", ticketService.getAllTickets());
         return "index";
     }
