@@ -43,6 +43,10 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
+    public TicketResponse findById(Long ticketId) {
+        return ticketMapper.map(getTicketById(ticketId));
+    }
+
     public List<TicketResponse> getAllTickets() {
         return ticketMapper.map(ticketRepository.findAllOrderByDate());
     }

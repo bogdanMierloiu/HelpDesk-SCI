@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card-deck">
-                    <div class="card" style="min-width: 18rem;" th:each="ticket : ${tickets}">
+                    <div class="card" style="min-width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title"
                                 th:text="${#strings.length(ticket.getDescription()) &lt;= 50 ? ticket.getDescription() : #strings.substring(ticket.getDescription(), 0, 50) + '...'}"></h5>
@@ -29,11 +29,11 @@
                             <p class="card-text text-muted"
                                th:text="${'Created at: ' + ticket.getCreatedAt()}"></p>
                             <p class="card-text" th:text="${'Status: ' + ticket.getStatus()}"></p>
-
-                            <form th:action="@{/ticket/view-ticket}" method="post">
-                                <input type="hidden" name="id" th:value="${ticket.getId()}" />
-                                <button type="submit" class="btn btn-outline-success btn-block d-flex align-items-center justify-content-center">
-                                    View ticket
+                            <form th:action="@{/ticket/assign-ticket}" method="post">
+                                <input type="hidden" name="id" th:value="${ticket.getId()}"/>
+                                <button type="submit"
+                                        class="btn btn-outline-success btn-block d-flex align-items-center justify-content-center">
+                                    Assign
                                 </button>
                             </form>
                         </div>

@@ -24,6 +24,15 @@ public class TicketController {
         return ResponseEntity.ok("Added successfully");
     }
 
+    @GetMapping("/{ticketId}")
+    public ResponseEntity<?> findById(@PathVariable("ticketId") @NotNull(message = "Ticket ID cannot be null") Long ticketId) {
+        try {
+            return ResponseEntity.ok(ticketService.findById(ticketId));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid ticket ID: " + e.getMessage());
+        }
+    }
+
     @GetMapping("/all-tickets")
     public ResponseEntity<List<TicketResponse>> getAll() {
         return ResponseEntity.ok(ticketService.getAllTickets());
