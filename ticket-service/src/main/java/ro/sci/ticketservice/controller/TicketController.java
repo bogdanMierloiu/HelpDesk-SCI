@@ -12,7 +12,7 @@ import ro.sci.ticketservice.service.TicketService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ticket")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class TicketController {
 

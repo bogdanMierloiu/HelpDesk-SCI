@@ -15,7 +15,7 @@ public class TicketService {
 
     public TicketResponse[] getAllTicketsNotResolved() {
         return webClientBuilder.build().get()
-                .uri("http://localhost:8081/ticket/all-tickets-not-resolved")
+                .uri("lb://ticket-service/api/all-tickets-not-resolved")
                 .retrieve()
                 .bodyToMono(TicketResponse[].class)
                 .block();
@@ -23,7 +23,7 @@ public class TicketService {
 
     public TicketResponse[] getTicketsByItSpecialistId(Long itSpecialistId) {
         return webClientBuilder.build().get()
-                .uri("http://localhost:8081/ticket/it-specialist/{workerId}", itSpecialistId)
+                .uri("lb://ticket-service/api/it-specialist/{workerId}", itSpecialistId)
                 .retrieve()
                 .bodyToMono(TicketResponse[].class)
                 .block();
@@ -31,7 +31,7 @@ public class TicketService {
 
     public TicketResponse getTicketById(Long ticketId) {
         return webClientBuilder.build().get()
-                .uri("http://localhost:8081/ticket/{ticketId}", ticketId)
+                .uri("lb://ticket-service/api/{ticketId}", ticketId)
                 .retrieve()
                 .bodyToMono(TicketResponse.class)
                 .block();
@@ -39,7 +39,7 @@ public class TicketService {
 
     public void addTicket(TicketRequest request) {
         webClientBuilder.build().post()
-                .uri("http://localhost:8081/ticket")
+                .uri("lb://ticket-service/api")
                 .bodyValue(request)
                 .retrieve()
                 .toBodilessEntity()
@@ -48,7 +48,7 @@ public class TicketService {
 
     public void assignTicket(AssignTicketRequest request) {
         webClientBuilder.build().post()
-                .uri("http://localhost:8081/ticket/assign")
+                .uri("lb://ticket-service/api/assign")
                 .bodyValue(request)
                 .retrieve()
                 .toBodilessEntity()

@@ -4,12 +4,15 @@
 
 html, body {
     height: 100%;
-    background-color: whitesmoke;
+    background-color: black;
 }
 
 .navbar {
     background-color: #e9eafc !important;
+}
 
+.card {
+    padding: 5px;
 }
 
 .content-wrap {

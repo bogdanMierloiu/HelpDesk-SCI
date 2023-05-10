@@ -1,12 +1,13 @@
 package ro.sci.ticketweb.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class TicketResponse {
 
     private Long id;

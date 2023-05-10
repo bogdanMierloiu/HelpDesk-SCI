@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ticket-web" />
+        <module name="gateway" />
         <module name="HelpDesk-SCI" />
         <module name="eureka-discovery-server" />
       </profile>
@@ -28,6 +29,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-discovery-server" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="ticket-service" options="-parameters" />
       <module name="ticket-web" options="-parameters" />
     </option>

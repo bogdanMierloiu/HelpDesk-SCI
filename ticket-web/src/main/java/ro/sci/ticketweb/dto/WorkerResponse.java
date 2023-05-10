@@ -1,10 +1,11 @@
 package ro.sci.ticketweb.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class WorkerResponse {
 
     private Long id;

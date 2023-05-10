@@ -18,7 +18,7 @@ public class TicketWebController {
 
     private final TicketService ticketService;
 
-    @GetMapping("/")
+    @GetMapping
     public String indexPage(Model model) {
         model.addAttribute("tickets", ticketService.getAllTicketsNotResolved());
         return "index";
