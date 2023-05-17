@@ -15,7 +15,7 @@ public class TicketService {
 
     public TicketResponse[] getAllTicketsNotResolved() {
         return webClientBuilder.build().get()
-                .uri("lb://ticket-service/api/all-tickets-not-resolved")
+                .uri("lb://ticket-stats-service/api/stats/all-tickets-not-resolved")
                 .retrieve()
                 .bodyToMono(TicketResponse[].class)
                 .block();
