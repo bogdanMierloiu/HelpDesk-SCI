@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,17 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("category")
+    @ManyToOne
+    @JsonIgnoreProperties("worker")
+    private PoliceStructure policeStructure;
+
+    @ManyToOne
+    @JsonIgnoreProperties("worker")
+    private Department department;
+
+
+    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("worker")
     private List<Ticket> tickets;
 
 

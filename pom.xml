@@ -5,9 +5,12 @@
     <groupId>ro.sci</groupId>
     <artifactId>HelpDesk-SCI</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>HelpDesk-SCI</name>
+    <modules>
+        <module>ticket-stats-service</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
